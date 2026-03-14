@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <span>Chili's Restaurant</span>
+  <span class="spacer"></span>
+  <button
+    mat-flat-button
+    class="button-container"
+    (click)="showMenu = true; showReservation = false"
+  >
+    Menu
+  </button>
+  <button
+    mat-flat-button
+    class="button-container"
+    (click)="showReservation = true; showMenu = false"
+  >
+    Reservations
+  </button>
+  <mat-slide-toggle
+    (change)="onToggleChange($event)"
+    [checked]="showTracker"
+    color="accent"
+  >
+    {{ showTracker ? 'Hide Order Tracker' : 'Show Order Tracker' }}
+  </mat-slide-toggle>
+  <app-order-tracker *ngIf="showTracker"></app-order-tracker>
+</mat-toolbar>
+<div class="content-container">
+  <app-menu *ngIf="showMenu"></app-menu>
+  <app-reservation-form *ngIf="showReservation"></app-reservation-form>
+</div>
